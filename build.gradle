@@ -20,6 +20,12 @@ subprojects {
             it.mappings("dev.architectury:yarn-mappings-patch-neoforge:1.21+build.4")
         }
     }
+
+    loom {
+        decompilerOptions.named("vineflower") {
+            options.put("mark-corresponding-synthetics", "1")
+        }
+    }
 }
 
 allprojects {
