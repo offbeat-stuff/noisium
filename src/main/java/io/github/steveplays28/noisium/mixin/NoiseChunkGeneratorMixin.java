@@ -1,7 +1,6 @@
 package io.github.steveplays28.noisium.mixin;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkSection;
 import net.minecraft.world.gen.StructureAccessor;
@@ -14,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(NoiseChunkGenerator.class)
-public abstract class NoiseChunkGeneratorMixin extends ChunkGenerator {
+public abstract class NoiseChunkGeneratorMixin {
   @Shadow
   protected abstract Chunk populateNoise(
       Blender blender,
@@ -23,10 +22,6 @@ public abstract class NoiseChunkGeneratorMixin extends ChunkGenerator {
       Chunk chunk,
       int minimumCellY,
       int cellHeight);
-
-  public NoiseChunkGeneratorMixin(BiomeSource biomeSource) {
-    super(biomeSource);
-  }
 
   @Redirect(
       method =
