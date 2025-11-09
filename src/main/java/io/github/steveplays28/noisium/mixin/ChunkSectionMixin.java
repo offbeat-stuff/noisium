@@ -10,12 +10,9 @@ import net.minecraft.world.chunk.ReadableContainer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(ChunkSection.class)
 public class ChunkSectionMixin {
-  @Unique private static final int noisium$sliceSize = 4;
-
   @Shadow private ReadableContainer<RegistryEntry<Biome>> biomeContainer;
 
   /**
@@ -27,9 +24,9 @@ public class ChunkSectionMixin {
       BiomeSupplier biomeSupplier, MultiNoiseUtil.MultiNoiseSampler sampler, int x, int y, int z) {
     PalettedContainer<RegistryEntry<Biome>> palettedContainer = this.biomeContainer.slice();
 
-    for (int posY = 0; posY < noisium$sliceSize; ++posY) {
-      for (int posZ = 0; posZ < noisium$sliceSize; ++posZ) {
-        for (int posX = 0; posX < noisium$sliceSize; ++posX) {
+    for (int posY = 0; posY < 4; ++posY) {
+      for (int posZ = 0; posZ < 4; ++posZ) {
+        for (int posX = 0; posX < 4; ++posX) {
           palettedContainer.swapUnsafe(
               posX, posY, posZ, biomeSupplier.getBiome(x + posX, y + posY, z + posZ, sampler));
         }
