@@ -24,7 +24,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "io.github.steveplays28.noisium.fabric.NoisiumFabric"
+      "io.github.steveplays28.noisium.Noisium"
     ]
   },
   "mixins": [
