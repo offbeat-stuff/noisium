@@ -16,7 +16,7 @@ public class Noisium implements ModInitializer {
   }
 
   public static <T> void fastSet(PalettedContainer<T> container, int x, int y, int z, T value) {
-    var val = container.data.palette.index(value, container);
+    var val = container.data.palette().index(value, container);
     container.data.storage().set(container.paletteProvider.computeIndex(x, y, z), val);
   }
 }
