@@ -1,5 +1,6 @@
 package io.github.steveplays28.noisium.mixin;
 
+import io.github.steveplays28.noisium.Noisium;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkSection;
@@ -52,20 +53,12 @@ public abstract class NoiseChunkGeneratorMixin {
     }
 
     // Set the blockstate in the palette storage directly to improve performance
-    var blockStateId =
-        chunkSection
-            .blockStateContainer
-            .data
-            .palette()
-            .index(blockState, chunkSection.blockStateContainer);
-    chunkSection
-        .blockStateContainer
-        .data
-        .storage()
-        .set(
-            chunkSection.blockStateContainer.paletteProvider.computeIndex(
-                chunkSectionBlockPosX, chunkSectionBlockPosY, chunkSectionBlockPosZ),
-            blockStateId);
+    Noisium.fastSet(
+        chunkSection.blockStateContainer,
+        chunkSectionBlockPosX,
+        chunkSectionBlockPosY,
+        chunkSectionBlockPosZ,
+        blockState);
 
     return blockState;
   }

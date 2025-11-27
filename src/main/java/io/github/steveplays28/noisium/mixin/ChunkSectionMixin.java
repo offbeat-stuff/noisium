@@ -1,5 +1,6 @@
 package io.github.steveplays28.noisium.mixin;
 
+import io.github.steveplays28.noisium.Noisium;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeSupplier;
@@ -27,8 +28,12 @@ public class ChunkSectionMixin {
     for (int posY = 0; posY < 4; ++posY) {
       for (int posZ = 0; posZ < 4; ++posZ) {
         for (int posX = 0; posX < 4; ++posX) {
-          palettedContainer.swapUnsafe(
-              posX, posY, posZ, biomeSupplier.getBiome(x + posX, y + posY, z + posZ, sampler));
+          Noisium.fastSet(
+              palettedContainer,
+              x,
+              y,
+              z,
+              biomeSupplier.getBiome(x + posX, y + posY, z + posZ, sampler));
         }
       }
     }
