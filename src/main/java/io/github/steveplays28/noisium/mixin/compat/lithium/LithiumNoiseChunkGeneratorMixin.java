@@ -50,8 +50,11 @@ public abstract class LithiumNoiseChunkGeneratorMixin extends ChunkGenerator {
       boolean lock) {
     // Set the blockstate in the palette storage directly to improve performance
     var blockStateId =
-        chunkSection.blockStateContainer.data.palette.index(
-            blockState, chunkSection.blockStateContainer);
+        chunkSection
+            .blockStateContainer
+            .data
+            .palette()
+            .index(blockState, chunkSection.blockStateContainer);
     chunkSection
         .blockStateContainer
         .data
