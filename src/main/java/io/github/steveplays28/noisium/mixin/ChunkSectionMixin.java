@@ -30,9 +30,9 @@ public class ChunkSectionMixin {
         for (int posX = 0; posX < 4; ++posX) {
           Noisium.fastSet(
               palettedContainer,
-              x,
-              y,
-              z,
+              posX,
+              posY,
+              posZ,
               biomeSupplier.getBiome(x + posX, y + posY, z + posZ, sampler));
         }
       }
